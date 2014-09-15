@@ -1,10 +1,12 @@
 package com.otiai10.app.alertsample;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
+import android.app.AlertDialog;
 
 
 public class MyActivity extends Activity {
@@ -14,6 +16,23 @@ public class MyActivity extends Activity {
         Log.d("marker00", "MyActivity.onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("AlertSample");
+        builder.setMessage("いえーい、元気？");
+        builder.setPositiveButton("元気っす", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d("marker00", "元気らしいですよ、っと");
+            }
+        });
+        builder.setNegativeButton("いや、ちょっと...", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d("marker00", "元気じゃないってさ");
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 
